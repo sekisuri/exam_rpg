@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MovingObject : MonoBehaviour
 {
+    static public MovingObject instance;
+
+    public string currentMapName;
 
     private BoxCollider2D boxCollider;
     public LayerMask layerMask;
@@ -27,8 +30,20 @@ public class MovingObject : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>(); 
+        if(instance != null)
+        {
+
+            Destroy(this.gameObject);
+        }
+        else
+        {
+    
+            DontDestroyOnLoad(this.gameObject);
+            animator = GetComponent<Animator>();
+            boxCollider = GetComponent<BoxCollider2D>();
+            instance = this;
+        }
+        
     }
     IEnumerator MoveCoroutine()
     {

@@ -4,10 +4,26 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    static public CameraManager instance;
+
     public GameObject target;
     public float moveSpeed;
     private Vector3 targetPosition;
 
+    private void Start()
+    {
+        if(instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+
+        
+    }
     private void Update()
     {
         if(target.gameObject != null)
