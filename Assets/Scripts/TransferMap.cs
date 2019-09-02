@@ -8,11 +8,11 @@ public class TransferMap : MonoBehaviour
     public string transferMapName;
 
     public Transform target;
+    public BoxCollider2D targetBound;
 
     private MovingObject thePlayer;
     private CameraManager theCamera;
 
-    public bool flag = false;
 
     private void Start()
     {
@@ -29,9 +29,9 @@ public class TransferMap : MonoBehaviour
         if(collision.gameObject.name == "Player")
         {
             thePlayer.currentMapName = transferMapName;
-            //  
+            //theCamera.SetBound(targetBound);  
 
-            if (flag)
+            if (true)
             {
                 SceneManager.LoadScene(transferMapName);
             }
