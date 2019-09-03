@@ -11,6 +11,12 @@ public class MovingObject : MonoBehaviour
     private BoxCollider2D boxCollider;
     public LayerMask layerMask;
 
+    private AudioManager theAudio;
+    public string walkSound_1;
+    public string walkSound_2;
+    public string walkSound_3;
+    public string walkSound_4;
+
     public float speed;
     private Vector3 vector;
     public float runSpeed;
@@ -41,6 +47,7 @@ public class MovingObject : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
             animator = GetComponent<Animator>();
             boxCollider = GetComponent<BoxCollider2D>();
+            theAudio = GetComponent<AudioManager>();
             instance = this;
         }
         
@@ -83,7 +90,7 @@ public class MovingObject : MonoBehaviour
             }
             animator.SetBool("Walking", true);
 
-
+            
             while (currentWalkCount < walkCount)
             {
                 if (vector.x != 0)
@@ -100,6 +107,8 @@ public class MovingObject : MonoBehaviour
                 }
                 currentWalkCount++;
                 yield return new WaitForSeconds(0.01f);
+
+             
             }
             currentWalkCount = 0;
 
