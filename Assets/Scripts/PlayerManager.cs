@@ -41,6 +41,7 @@ public class PlayerManager : MovingObject
         {
 
             DontDestroyOnLoad(this.gameObject);
+            queue = new Queue<string>();
             animator = GetComponent<Animator>();
             boxCollider = GetComponent<BoxCollider2D>();
             theAudio = GetComponent<AudioManager>();
