@@ -72,15 +72,8 @@ public class PlayerManager : MovingObject
             animator.SetFloat("DirX", vector.x);
             animator.SetFloat("DirY", vector.y);
 
-            RaycastHit2D hit;
-
-            Vector2 start = transform.position;
-            Vector2 end = start + new Vector2(vector.x * speed * walkCount, vector.y * speed * walkCount);
-            boxCollider.enabled = false;
-
-            hit = Physics2D.Linecast(start, end, layerMask);
-            boxCollider.enabled = true;
-            if (hit.transform != null)
+            bool checkCollsionFlag = base.CheckCollsion();
+            if (checkCollsionFlag)
             {
                 break;
             }

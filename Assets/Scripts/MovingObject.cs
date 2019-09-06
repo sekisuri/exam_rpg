@@ -62,4 +62,22 @@ public class MovingObject : MonoBehaviour
         npcCanMove = true;
     }
 
+    protected bool CheckCollsion()
+    {
+        RaycastHit2D hit;
+
+        Vector2 start = transform.position;
+        Vector2 end = start + new Vector2(vector.x * speed * walkCount, vector.y * speed * walkCount);
+        boxCollider.enabled = false;
+
+        hit = Physics2D.Linecast(start, end, layerMask);
+        boxCollider.enabled = true;
+        if (hit.transform != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
 }
