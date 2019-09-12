@@ -22,6 +22,7 @@ public class MovingObject : MonoBehaviour
         queue.Enqueue(_dir);
         if (!notCoroutine)
         {
+            
             notCoroutine = true;
             StartCoroutine(MoveCoroutine(_dir, _frequency));
         }
@@ -52,6 +53,21 @@ public class MovingObject : MonoBehaviour
             }
             animator.SetFloat("DirX", vector.x);
             animator.SetFloat("DirY", vector.y);
+            while (true)
+            {
+                bool checkCollsionFlag = CheckCollsion();
+                if (checkCollsionFlag)
+                {
+                    animator.SetBool("Walking", false);
+                    yield return new WaitForSeconds(1f);
+                    
+                }
+                else
+                {
+                    break;
+                }
+            }
+            
             animator.SetBool("Walking", true);
             while (currentWalkCount < walkCount)
             {

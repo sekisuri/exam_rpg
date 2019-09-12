@@ -607,8 +607,9 @@ GameObject:
   - component: {fileID: 1385073022}
   - component: {fileID: 1385073021}
   - component: {fileID: 1385073024}
-  m_Layer: 0
-  m_Name: NpcCharactor
+  - component: {fileID: 1385073025}
+  m_Layer: 8
+  m_Name: Npc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -713,10 +714,10 @@ MonoBehaviour:
   speed: 2.4
   walkCount: 20
   animator: {fileID: 1385073021}
-  boxCollider: {fileID: 0}
+  boxCollider: {fileID: 1385073025}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   npc:
     NPCmove: 0
     direction:
@@ -725,6 +726,32 @@ MonoBehaviour:
     - DOWN
     - RIGHT
     frequency: 4
+--- !u!61 &1385073025
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385073020}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 25.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.2}
+    oldSize: {x: 48, y: 85}
+    newSize: {x: 48, y: 85}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 48, y: 85}
+  m_EdgeRadius: 0
 --- !u!1 &1519075274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,7 +1041,7 @@ GameObject:
   - component: {fileID: 1842064792}
   - component: {fileID: 1842064793}
   - component: {fileID: 1842064794}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,7 +1067,7 @@ MonoBehaviour:
   boxCollider: {fileID: 1842064792}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   currentMapName: 
   walkSound_1: footsteps 1
   walkSound_2: footsteps 2
