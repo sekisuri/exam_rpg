@@ -12,12 +12,14 @@ public class TransferMap : MonoBehaviour
 
     private PlayerManager thePlayer;
     private CameraManager theCamera;
+    private FadeManager theFade;
 
 
     private void Start()
     {
         thePlayer = FindObjectOfType<PlayerManager>();
         theCamera = FindObjectOfType<CameraManager>();
+        //theFade = FindObjectOfType<FadeManager>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,6 +30,7 @@ public class TransferMap : MonoBehaviour
 
         if(collision.gameObject.name == "Player")
         {
+            // theFade.Fadeout();
             thePlayer.currentMapName = transferMapName;
             //theCamera.SetBound(targetBound);  
 
@@ -41,6 +44,7 @@ public class TransferMap : MonoBehaviour
                 theCamera.transform.position.z);
                 thePlayer.transform.position = target.transform.position;
             }
+            // theFade.FadeIn();
             
         }
     }
