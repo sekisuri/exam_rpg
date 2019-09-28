@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class choice 
+public class Choice 
 {
     public string question;
     public string[] answers;

@@ -44,7 +44,7 @@ public class ChoiceManager : MonoBehaviour
         question_Text.text = "";
     }
 
-    public void ShowChoice(choice _choice)
+    public void ShowChoice(Choice _choice)
     {
         go.SetActive(true);
         result = 0;
