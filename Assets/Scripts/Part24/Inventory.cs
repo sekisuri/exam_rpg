@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
+    public static Inventory instance;
     private AudioManager theAudio;
+    private DatabaseManager theDatabase;
     public string key_sound;
     public string enter_sound;
     public string cancel_sound;
@@ -34,10 +36,22 @@ public class Inventory : MonoBehaviour
     private bool preventExec;
 
     private WaitForSeconds waitTime = new WaitForSeconds(0.01f);
-
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+    }
     private void Start()
     {
         theAudio = FindObjectOfType<AudioManager>();
+        theDatabase = FindObjectOfType<DatabaseManager>();
         inventoryItemList = new List<Item>();
         inventoryTabList = new List<Item>();
         slots = tf.GetComponentsInChildren<InventorySlot>();
@@ -56,6 +70,27 @@ public class Inventory : MonoBehaviour
             slots[i].RemoveItem();
             slots[i].gameObject.SetActive(false);
         }
+    }
+
+    public void GetAnItem(int _itemID, int _count = 1)
+    {
+        for (int i = 0; i < theDatabase.itemList.Count; i++) // 데이터베이스 아이템 검색
+        {
+            if (_itemID == theDatabase.itemList[i].itemID) // 데이터베이스에 아이템 발견
+            {
+                for (int j = 0; j < inventoryItemList.Count; j++) // 소지품에 같은 아이템이 있는지 검색
+                {
+                    if (inventoryItemList[j].itemID == _itemID) // 소지품에 같은 아이템이 있다 -> 갯수만 증가
+                    {
+                        inventoryItemList[j].itemCount += _count;
+                        return;
+                    }
+                }
+                inventoryItemList.Add(theDatabase.itemList[i]); // 소지품에 해당 아이템 추가
+                return;
+            }
+        }
+        Debug.LogError("데이터베이스에 해당 ID를 가진 아이템이 존재하지 않습니다.");
     }
     public void SelectedTab()
     {
